@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FIFA World Cup 2026 - Round of 32 Fixtures</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#081b33;
+color:#fff;
+}
+
+header{
+background:linear-gradient(90deg,#0057b8,#0a84ff);
+padding:25px;
+text-align:center;
+box-shadow:0 5px 20px rgba(0,0,0,.4);
+}
+
+header h1{
+font-size:40px;
+}
+
+header p{
+margin-top:8px;
+font-size:18px;
+color:#ddd;
+}
+
+.container{
+width:95%;
+max-width:1200px;
+margin:auto;
+padding:30px 0;
+}
+
+.search{
+margin-bottom:30px;
+text-align:center;
+}
+
+.search input{
+width:350px;
+max-width:90%;
+padding:14px;
+font-size:17px;
+border:none;
+border-radius:40px;
+outline:none;
+}
+
+.date-title{
+margin:40px 0 20px;
+font-size:28px;
+border-left:6px solid gold;
+padding-left:12px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:20px;
+}
+
+.card{
+background:#112d4e;
+border-radius:15px;
+padding:20px;
+transition:.3s;
+border:1px solid rgba(255,255,255,.1);
+}
+
+.card:hover{
+transform:translateY(-6px);
+background:#173d69;
+}
+
+.teams{
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:22px;
+font-weight:bold;
+margin-bottom:20px;
+}
+
+.vs{
+color:gold;
+font-size:18px;
+}
+
+.info{
+line-height:1.9;
+color:#ddd;
+font-size:15px;
+}
+
+button{
+margin-top:20px;
+width:100%;
+padding:12px;
+background:#ffc107;
+color:#000;
+font-weight:bold;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
+transition:.3s;
+}
+
+button:hover{
+background:#ffdb4d;
+}
+
+footer{
+margin-top:50px;
+text-align:center;
+padding:20px;
+background:#06111f;
+color:#aaa;
+}
+
+</style>
+
+</head>
+<body>
+
+<header>
+
+<h1>🏆 FIFA WORLD CUP 2026</h1>
+
+<p>Round of 32 Fixtures</p>
+
+</header>
+
+<div class="container">
+
+<div class="search">
+
+<input type="text" id="search" placeholder="Search Team...">
+
+</div>
+
+<div id="fixtures"></div>
+
+</div>
+
+<footer>
+
+© FIFA World Cup 2026 Fixtures Demo
+
+</footer>
+
+<script>
+
+const fixtures=[
+
+{
+date:"28 June 2026",
+home:"🇿🇦 South Africa",
+away:"🇨🇦 Canada",
+stadium:"Los Angeles Stadium",
+time:"03:00 PM EDT"
+},
+
+{
+date:"29 June 2026",
+home:"🇧🇷 Brazil",
+away:"🇯🇵 Japan",
+stadium:"Houston Stadium",
+time:"01:00 PM EDT"
+},
+
+{
+date:"29 June 2026",
+home:"🇩🇪 Germany",
+away:"🇵🇾 Paraguay",
+stadium:"Boston Stadium",
+time:"04:30 PM EDT"
+},
+
+{
+date:"29 June 2026",
+home:"🇳🇱 Netherlands",
+away:"🇲🇦 Morocco",
+stadium:"Monterrey Stadium",
+time:"09:00 PM EDT"
+},
+
+{
+date:"30 June 2026",
+home:"🇨🇮 Ivory Coast",
+away:"🇳🇴 Norway",
+stadium:"Seattle Stadium",
+time:"01:00 PM EDT"
+},
+
+{
+date:"30 June 2026",
+home:"🇫🇷 France",
+away:"🇸🇪 Sweden",
+stadium:"Dallas Stadium",
+time:"05:00 PM EDT"
+},
+
+{
+date:"30 June 2026",
+home:"🇲🇽 Mexico",
+away:"🇪🇨 Ecuador",
+stadium:"Mexico City Stadium",
+time:"09:00 PM EDT"
+},
+
+{
+date:"1 July 2026",
+home:"🏴 England",
+away:"🇨🇩 DR Congo",
+stadium:"New York Stadium",
+time:"12:00 PM EDT"
+},
+
+{
+date:"1 July 2026",
+home:"🇧🇪 Belgium",
+away:"🇸🇳 Senegal",
+stadium:"Atlanta Stadium",
+time:"04:00 PM EDT"
+},
+
+{
+date:"1 July 2026",
+home:"🇺🇸 USA",
+away:"🇧🇦 Bosnia",
+stadium:"Kansas City Stadium",
+time:"08:00 PM EDT"
+},
+
+{
+date:"2 July 2026",
+home:"🇪🇸 Spain",
+away:"🇦🇹 Austria",
+stadium:"Miami Stadium",
+time:"03:00 PM EDT"
+},
+
+{
+date:"2 July 2026",
+home:"🇵🇹 Portugal",
+away:"🇭🇷 Croatia",
+stadium:"Toronto Stadium",
+time:"07:00 PM EDT"
+},
+
+{
+date:"2 July 2026",
+home:"🇨🇭 Switzerland",
+away:"🇩🇿 Algeria",
+stadium:"Vancouver Stadium",
+time:"11:00 PM EDT"
+},
+
+{
+date:"3 July 2026",
+home:"🇦🇺 Australia",
+away:"🇪🇬 Egypt",
+stadium:"San Francisco Stadium",
+time:"02:00 PM EDT"
+},
+
+{
+date:"3 July 2026",
+home:"🇦🇷 Argentina",
+away:"🇨🇻 Cape Verde",
+stadium:"Philadelphia Stadium",
+time:"06:00 PM EDT"
+},
+
+{
+date:"3 July 2026",
+home:"🇨🇴 Colombia",
+away:"🇬🇭 Ghana",
+stadium:"Chicago Stadium",
+time:"09:30 PM EDT"
+}
+
+];
+
+function render(data){
+
+const container=document.getElementById("fixtures");
+
+container.innerHTML="";
+
+const groups={};
+
+data.forEach(match=>{
+
+if(!groups[match.date]) groups[match.date]=[];
+
+groups[match.date].push(match);
+
+});
+
+for(let date in groups){
+
+container.innerHTML+=`<h2 class="date-title">${date}</h2>`;
+
+container.innerHTML+=`<div class="grid">`;
+
+groups[date].forEach(match=>{
+
+container.innerHTML+=`
+
+<div class="card">
+
+<div class="teams">
+
+<span>${match.home}</span>
+
+<span class="vs">VS</span>
+
+<span>${match.away}</span>
+
+</div>
+
+<div class="info">
+
+🏟 <b>Stadium:</b> ${match.stadium}<br>
+
+🕒 <b>Kick Off:</b> ${match.time}
+
+</div>
+
+<button onclick="alert('Prediction feature coming soon!')">
+
+Predict Winner
+
+</button>
+
+</div>
+
+`;
+
+});
+
+container.innerHTML+=`</div>`;
+
+}
+
+}
+
+render(fixtures);
+
+document.getElementById("search").addEventListener("keyup",function(){
+
+let value=this.value.toLowerCase();
+
+let result=fixtures.filter(match=>
+
+match.home.toLowerCase().includes(value) ||
+
+match.away.toLowerCase().includes(value)
+
+);
+
+render(result);
+
+});
+
+</script>
+
+</body>
+</html>
